@@ -6,6 +6,7 @@ const debug = require('debug')('ilp-spsp')
 
 // recipient is the payment pointer
 // amount is 1 XRP = 10^9 units
+
 async function pay (recipient, amount) {
   try {
     const plugin = ilp.createPlugin()
@@ -28,7 +29,16 @@ async function pay (recipient, amount) {
 
 // sending 0.0000001 XRP
 function run () {
-  pay('$spsp.strata-ilsp-3.com:8084', 100)
+  pay('$arcade.localtunnel.me', 1)
 }
 
-run()
+// 1. Create the button
+var button = document.createElement("moneysender");
+button.innerHTML = "Send Money";
+
+// 2. Append somewhere
+var body = document.getElementsByTagName("body")[0];
+body.appendChild(button);
+
+// 3. Add event handler
+button.addEventListener ("click", run());
